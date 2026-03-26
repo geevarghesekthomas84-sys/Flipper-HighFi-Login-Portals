@@ -51,18 +51,21 @@ This repository provides zero-network, self-contained authentication interfaces.
 
 Each subdirectory is a standalone project:
 
-*   **`Google_standard/`** / **`Apple_standard/`** / **`facebook_standard/`** / **`Amazon_standard/`**
-    *   Optimized for standard Flipper Zero `/get` capture.
-*   **`Google_discord/`** / **`Apple_discord/`** / **`facebook_discord/`** / **`Amazon_discord/`**
-    *   Ready for Discord Webhook integration (requires custom webhook URL).
-*   **`google_local/`**
-    *   Demonstrates offline persistence using `localStorage`.
-*   **`google_server/`**
-    *   Configured for traditional server-side submission.
-*   **`flipper_evil_portal/`**
-    *   A consolidated, ultra-lean version of the Google portal.
-
----
+```text
+flipperweb/
+├── Amazon_discord/
+├── Amazon_standard/
+├── Apple_discord/
+├── Apple_standard/
+├── facebook_discord/
+├── facebook_standard/
+├── Google_discord/
+├── Google_standard/
+├── google_local/
+├── google_server/
+├── flipper_evil_portal/
+└── screenshots/
+```
 
 ## 🚀 Quick Start
 
