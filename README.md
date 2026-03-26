@@ -1,7 +1,7 @@
 # Flipper-HighFi-Login-Portals
 
 <p>
-  <img src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" alt="Project Banner" width="200" />
+  <img src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" alt="Project Banner" width="1S00" />
 </p>
 
 A comprehensive collection of high-fidelity frontend replica portals for security research, UI/UX study, and captive portal prototyping. Optimized specifically for the **Flipper Zero Evil Portal** module.
