@@ -1,5 +1,8 @@
 # Flipper-HighFi-Login-Portals
 
+
+<img width="78" height="20" alt="image" src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" />
+
   A frontend research project exploring self-contained authentication-style interfaces designed for constrained captive-portal    
   environments. This repository contains HTML/CSS/JavaScript mockups inspired by widely recognized sign-in flows, built to study  
   responsive layout systems, inline assets, interaction states, and offline rendering behavior.
