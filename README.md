@@ -1,6 +1,6 @@
 # Flipper-HighFi-Login-Portals
 
-<p align="center">
+<p>
   <img src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" alt="Project Banner" width="200" />
 </p>
 
