@@ -14,7 +14,7 @@ jobs:
 
       - name: Build Gallery
         run: |
-          # Create a landing page for all portals
+          # Create a landing page gallery at the root for GH Pages
           cat <<EOF > index.html
           <!DOCTYPE html>
           <html lang="en">
@@ -23,24 +23,60 @@ jobs:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>Flipper High-Fi Portals - Live Preview</title>
               <style>
-                  body { font-family: -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+                  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background: #0d1117; color: #c9d1d9; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
                   .container { max-width: 800px; text-align: center; padding: 20px; }
-                  h1 { color: #58a6ff; }
-                  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
-                  .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
-                  .card:hover { border-color: #58a6ff; transform: translateY(-3px); }
-                  .badge { font-size: 0.7em; text-transform: uppercase; border: 1px solid #238636; color: #3fb950; padding: 2px 6px; border-radius: 10px; }
+                  h1 { color: #58a6ff; margin-bottom: 10px; }
+                  p.desc { color: #8b949e; margin-bottom: 40px; }
+                  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; width: 100%; }
+                  .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; text-align: left; }
+                  .card:hover { border-color: #58a6ff; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+                  .card h3 { margin: 0; color: #f0f6fc; font-size: 1.2em; }
+                  .card p { font-size: 0.85em; color: #8b949e; margin: 10px 0 0 0; line-height: 1.5; }
+                  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+                  .badge-std { background: #23863622; color: #3fb950; border: 1px solid #238636; }
+                  .badge-adv { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb; }
+                  footer { margin-top: 60px; font-size: 0.9em; color: #8b949e; }
+                  footer a { color: #58a6ff; text-decoration: none; margin: 0 10px; }
               </style>
           </head>
           <body>
               <div class="container">
                   <h1>🚀 Flipper Portals Gallery</h1>
+                  <p class="desc">High-fidelity UI research templates for security professionals.</p>
+                  
                   <div class="grid">
-                      <a href="flipperweb/Google_standard/index.html" class="card"><span class="badge">Standard</span><h3>Google</h3></a>
-                      <a href="flipperweb/Apple_standard/index.html" class="card"><span class="badge">Standard</span><h3>Apple</h3></a>
-                      <a href="flipperweb/facebook_standard/index.html" class="card"><span class="badge">Standard</span><h3>Facebook</h3></a>
-                      <a href="flipperweb/Amazon_standard/index.html" class="card"><span class="badge">Standard</span><h3>Amazon</h3></a>
+                      <a href="flipperweb/Google_standard/index.html" class="card">
+                          <span class="badge badge-std">Standard</span>
+                          <h3>Google Login</h3>
+                          <p>Pixel-perfect replica of the modern Google account sign-in flow.</p>
+                      </a>
+                      <a href="flipperweb/Apple_standard/index.html" class="card">
+                          <span class="badge badge-std">Standard</span>
+                          <h3>Apple ID</h3>
+                          <p>High-fidelity Apple account login with glassmorphism effects.</p>
+                      </a>
+                      <a href="flipperweb/facebook_standard/index.html" class="card">
+                          <span class="badge badge-std">Standard</span>
+                          <h3>Facebook</h3>
+                          <p>Faithful reproduction of the classic Facebook mobile login UI.</p>
+                      </a>
+                      <a href="flipperweb/Amazon_standard/index.html" class="card">
+                          <span class="badge badge-std">Standard</span>
+                          <h3>Amazon</h3>
+                          <p>Detailed recreation of the Amazon Prime authentication interface.</p>
+                      </a>
+                      <a href="flipperweb/google_local/index.html" class="card">
+                          <span class="badge badge-adv">Advanced</span>
+                          <h3>Google Local</h3>
+                          <p>Google template enhanced with LocalStorage persistence logic.</p>
+                      </a>
                   </div>
+
+                  <footer>
+                      <a href="https://github.com/geevarghesekthomas84-sys/Flipper-HighFi-Login-Portals">← Source Code</a>
+                      |
+                      <a href="https://github.com/geevarghesekthomas84-sys/Flipper-HighFi-Login-Portals#ethics--legal-notice">Ethics Policy</a>
+                  </footer>
               </div>
           </body>
           </html>
