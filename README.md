@@ -1,7 +1,15 @@
 # Flipper-HighFi-Login-Portals
 
-<p>
-  <img src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" alt="Project Banner" width="100" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" alt="Project Banner" width="120" />
+</p>
+
+<p align="center">
+  <a href="https://geevarghesekthomas84-sys.github.io/Flipper-HighFi-Login-Portals/">
+    <img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=github" alt="Live Demo" />
+  </a>
+  <img src="https://img.shields.io/github/license/geevarghesekthomas84-sys/Flipper-HighFi-Login-Portals?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/github/stars/geevarghesekthomas84-sys/Flipper-HighFi-Login-Portals?style=for-the-badge" alt="Stars" />
 </p>
 
 A comprehensive collection of high-fidelity frontend replica portals for security research, UI/UX study, and captive portal prototyping. Optimized specifically for the **Flipper Zero Evil Portal** module.
@@ -11,7 +19,7 @@ A comprehensive collection of high-fidelity frontend replica portals for securit
 ## ✨ Preview
 
 > [!TIP]
-> To view these previews locally, add your own screenshots to the `./screenshots/` directory.
+> **Check out the [Live Gallery](https://geevarghesekthomas84-sys.github.io/Flipper-HighFi-Login-Portals/)** to interact with the high-fidelity UI without downloading anything.
 
 ### 🔍 Google Login UI
 <img src="https://github.com/user-attachments/assets/bd21024e-658e-40c6-971e-e1348bb5e647" alt="Google Preview" width="100%" />
