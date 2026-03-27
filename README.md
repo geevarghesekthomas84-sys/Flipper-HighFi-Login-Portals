@@ -1,10 +1,6 @@
 # Flipper-HighFi-Login-Portals
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/e7eae45b-2dda-4e76-8f83-b1e3c99dd852" alt="Project Banner" width="120" />
-</p>
-
-<p align="center">
   <a href="https://geevarghesekthomas84-sys.github.io/Flipper-HighFi-Login-Portals/">
     <img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=github" alt="Live Demo" />
   </a>
