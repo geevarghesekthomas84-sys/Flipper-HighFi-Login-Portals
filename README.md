@@ -14,9 +14,6 @@ A comprehensive collection of high-fidelity frontend replica portals for securit
 
 ## ✨ Preview
 
-> [!TIP]
-> **Check out the [Live Gallery](https://geevarghesekthomas84-sys.github.io/Flipper-HighFi-Login-Portals/)** to interact with the high-fidelity UI without downloading anything.
-
 ### 🔍 Google Login UI
 <img src="https://github.com/user-attachments/assets/bd21024e-658e-40c6-971e-e1348bb5e647" alt="Google Preview" width="100%" />
 
