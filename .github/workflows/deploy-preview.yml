@@ -1,0 +1,53 @@
+name: Deploy Live Preview
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Gallery
+        run: |
+          # Create a landing page for all portals
+          cat <<EOF > index.html
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Flipper High-Fi Portals - Live Preview</title>
+              <style>
+                  body { font-family: -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+                  .container { max-width: 800px; text-align: center; padding: 20px; }
+                  h1 { color: #58a6ff; }
+                  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
+                  .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
+                  .card:hover { border-color: #58a6ff; transform: translateY(-3px); }
+                  .badge { font-size: 0.7em; text-transform: uppercase; border: 1px solid #238636; color: #3fb950; padding: 2px 6px; border-radius: 10px; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>🚀 Flipper Portals Gallery</h1>
+                  <div class="grid">
+                      <a href="flipperweb/Google_standard/index.html" class="card"><span class="badge">Standard</span><h3>Google</h3></a>
+                      <a href="flipperweb/Apple_standard/index.html" class="card"><span class="badge">Standard</span><h3>Apple</h3></a>
+                      <a href="flipperweb/facebook_standard/index.html" class="card"><span class="badge">Standard</span><h3>Facebook</h3></a>
+                      <a href="flipperweb/Amazon_standard/index.html" class="card"><span class="badge">Standard</span><h3>Amazon</h3></a>
+                  </div>
+              </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
