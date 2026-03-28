@@ -104,7 +104,7 @@ flipperweb/
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE.txt).
+This project is licensed under the [LICENSE](LICENSE).
 
 ---
 *If you find value in these templates for your research, please give this repository a ⭐ on GitHub!*
